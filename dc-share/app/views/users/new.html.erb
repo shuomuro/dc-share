@@ -1,0 +1,38 @@
+<div class="box">
+  <h2 class="box-title">会員登録</h2>
+  <div class="box-inner">
+    <%= form_for(@user) do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+      <div class="form-group">
+        <%= f.text_field :account_name, class: "form-control", placeholder: "アカウント名" %>
+      </div>
+      <div class="form-group">
+        <%= f.text_field :job, class: "form-control", placeholder: "職業" %>
+      </div>
+      <div class="form-group">
+        <%= f.text_field :location, class: "form-control", placeholder: "お住いの都道府県" %>
+      </div>
+      <div class="form-group">
+        <%= f.text_field :year, class: "form-control", placeholder: "年（4桁）" %>
+      </div>
+      <div class="form-group">
+        <%= f.text_field :month, class: "form-control", placeholder: "月（2桁）" %>
+      </div>
+      <div class="form-group">
+        <%= f.text_field :day, class: "form-control", placeholder: "日（2桁）" %>
+      </div>
+      <div class="form-group">
+        <%= f.text_field :email, class: "form-control", placeholder: "メールアドレス" %>
+      </div>
+      <div class="form-group">
+        <%= f.password_field :password, class: "form-control", placeholder: "パスワード" %>
+      </div>
+      <div class="form-group">
+        <%= f.password_field :password_confirmation, class: "form-control", placeholder: "パスワード（確認）" %>
+      </div>
+      <div class="submit-group">
+        <%= f.submit "登録する", class: "btn btn-success" %>
+      </div>
+    <% end %>
+  </div>
+</div>
