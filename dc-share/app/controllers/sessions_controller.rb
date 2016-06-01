@@ -1,13 +1,13 @@
 class SessionsController < ApplicationController
   def new
-    redirect_to route_path if logged_in?
+    redirect_to root_path if logged_in?
   end
 
   def create
     @user = User.find_by(email: params[:session][:email].downcase)
     if @user && @user.authenticate(params[:session][:password])
       session[:user_id] = @user.id
-      flash[:info] = "logged in as #{@user.name}"
+      flash[:info] = "logged in as #{@user.account_name}"
       redirect_to @user
     else
       flash[:danger] = 'invalid email/password combination'

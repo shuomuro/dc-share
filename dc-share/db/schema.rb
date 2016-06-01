@@ -11,7 +11,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160528132543) do
+ActiveRecord::Schema.define(version: 20160531003641) do
+
+  create_table "constituents", force: :cascade do |t|
+    t.integer  "portfolio_id"
+    t.integer  "product_id"
+    t.integer  "percent"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  create_table "likes", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "portfolio_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  create_table "lineups", force: :cascade do |t|
+    t.integer  "security_id"
+    t.integer  "product_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "portfolios", force: :cascade do |t|
     t.string   "name"
@@ -24,15 +46,16 @@ ActiveRecord::Schema.define(version: 20160528132543) do
   end
 
   create_table "products", force: :cascade do |t|
-    t.string   "code"
+    t.string   "product_code"
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   create_table "securities", force: :cascade do |t|
     t.string   "security_code"
     t.string   "name"
+    t.string   "group"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end

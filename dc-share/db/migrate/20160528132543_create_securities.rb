@@ -3,6 +3,7 @@ class CreateSecurities < ActiveRecord::Migration
     create_table :securities do |t|
       t.string :security_code
       t.string :name
+      t.string :group
 
       t.timestamps null: false
     end

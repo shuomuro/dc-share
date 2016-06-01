@@ -17,5 +17,24 @@ class User < ActiveRecord::Base
 
   has_many :likes, foreign_key: "user_id"
   has_many :portfolios, through: :likes
+
+
+  # portfolioのlikeとunlikeの実装（将来的にはunlikeしても履歴データは残したい）
+
+  def like(portfolio)
+    likes.find_or_create_by(portfolio_id: portfolio.id)
+  end
   
+  def unlike(portfolio)
+    likes.find_by(portfolio_id: portfolio.id).destroy
+  end
+
+  def like?(portfolio)
+    likes.include?(portfolio) #自信なし
+  end
+
 end
+
+
+
+

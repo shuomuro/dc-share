@@ -1,5 +1,5 @@
 class Security < ActiveRecord::Base
-  validates :security_code, presence: true
+#  validates :security_code
   validates :name, presence: true
   
   has_many :lineups, foreign_key: "security_id"
