@@ -7,6 +7,7 @@ class PortfoliosController < ApplicationController
   
   def constituent
     @portfolio = Portfolio.new
+    @portfolio.constituents.build #階層化で追加
 
     @security = Security.find_by(security_code: portfolio_params[:security_id]) #前ページで指定した証券会社のインスタンス
 

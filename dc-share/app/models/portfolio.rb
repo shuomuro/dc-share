@@ -14,4 +14,7 @@ class Portfolio < ActiveRecord::Base
   has_many :likes, foreign_key: "portfolio_id"
   has_many :users, through: :likes
 
+#モデルの階層関連付け
+  accepts_nested_attributes_for :constituents
+
 end

@@ -1,0 +1,8 @@
+<div class="field">
+  <select name="constituent_product">
+    <% @lineup.each do |l| %>
+      <option value="<%= l.product_id %>"><%= Product.find_by(id: l.product_id).name %></option>
+    <% end %>
+  </select>
+  <%= c.text_field :percent, placeholder: "投資割合（整数％）" %>
+</div>

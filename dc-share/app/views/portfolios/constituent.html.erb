@@ -1,27 +1,22 @@
 <div class="box">
-  <h2 class="box-title">ポートフォリオ作成</h2>
+  <h2 class="box-title">ポートフォリオ作成（２）商品と投資割合の選択</h2>
   <div class="box-inner">
+    選択中の金融機関：<%= @security.name %><br><br>
     <%= form_for (@portfolio) do |f| %>
       <div class="form-group">
         <%= f.text_field :name, class: "form-control", placeholder: "ポートフォリオの名前" %>
       </div>
 
-      <div class="form-group">
-        <%= @security.name %><br>
-        <%= @security.id %><br>
-        <br>
-        <% @lineup.each do |l| %>
-          <%= l.product_id %>、<%= l.security_id %><br>
-        <% end %>
-        <br>
+<%# 階層化で追加 %>
 
-        <select name="constituent_product">
-        <% @lineup.each do |l| %>
-          <option value="<%= l.product_id %>"><%= Product.find_by(id: l.product_id).name %></option>
+      <div class="field">
+        <%= f.hidden_field :id %>
+        <%= f.fields_for :constituents do |c| %>
+          <%= render partial: "portfolios/constituent_form", locals: {c: c } %>
         <% end %>
-        </select>
-        <%= f.text_field :name, placeholder: "投資割合（整数％）" %>
       </div>
+
+<%# 階層化で追加　終わり %>
 
       <div class="form-group">
         <%= f.text_field :purpose, class: "form-control", placeholder: "ポートフォリオの投資目的・方針" %>
