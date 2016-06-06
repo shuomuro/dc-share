@@ -5,6 +5,16 @@ class PortfoliosController < ApplicationController
     @portfolio = Portfolio.new
   end
   
+  def constituent
+    @portfolio = Portfolio.new
+
+    @security = Security.find_by(security_code: portfolio_params[:security_id]) #前ページで指定した証券会社のインスタンス
+
+    @lineup = @security.lineups #証券会社のラインナップのインスタンス
+
+  end
+  
+  
   def create
     @portfolio = Portfolio.new(portfolio_params)
 

@@ -1,0 +1,35 @@
+<div class="box">
+  <h2 class="box-title">ポートフォリオ作成</h2>
+  <div class="box-inner">
+    <%= form_for (@portfolio) do |f| %>
+      <div class="form-group">
+        <%= f.text_field :name, class: "form-control", placeholder: "ポートフォリオの名前" %>
+      </div>
+
+      <div class="form-group">
+        <%= @security.name %><br>
+        <%= @security.id %><br>
+        <br>
+        <% @lineup.each do |l| %>
+          <%= l.product_id %>、<%= l.security_id %><br>
+        <% end %>
+        <br>
+
+        <select name="constituent_product">
+        <% @lineup.each do |l| %>
+          <option value="<%= l.product_id %>"><%= Product.find_by(id: l.product_id).name %></option>
+        <% end %>
+        </select>
+        <%= f.text_field :name, placeholder: "投資割合（整数％）" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.text_field :purpose, class: "form-control", placeholder: "ポートフォリオの投資目的・方針" %>
+      </div>
+
+      <div class="submit-group">
+        <%= f.submit "ポートフォリオを作成する", class: "btn btn-success" %>
+      </div>
+    <% end %>
+  </div>
+</div>

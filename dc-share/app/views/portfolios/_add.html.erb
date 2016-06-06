@@ -1,0 +1,6 @@
+<%= link_to "商品を追加" , ownerships_path(item_id: item.id),
+    :class => "want-#{item.id} btn-want btn btn-danger btn-sm want",
+    :remote => true,
+    :method => :post %>
+    
+<%#途中&>
