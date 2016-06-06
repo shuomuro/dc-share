@@ -1,5 +1,5 @@
 <div class="field">
-  <select name="constituent_product">
+  <select name="portfolio[constituents_attributes][0][product_id]">
     <% @lineup.each do |l| %>
       <option value="<%= l.product_id %>"><%= Product.find_by(id: l.product_id).name %></option>
     <% end %>

@@ -3,6 +3,8 @@
   <div class="box-inner">
     選択中の金融機関：<%= @security.name %><br><br>
     <%= form_for (@portfolio) do |f| %>
+      <%= f.hidden_field :user_id, :value => current_user.id %>
+      <%= f.hidden_field :security_id, :value => @security.id %>
       <div class="form-group">
         <%= f.text_field :name, class: "form-control", placeholder: "ポートフォリオの名前" %>
       </div>
