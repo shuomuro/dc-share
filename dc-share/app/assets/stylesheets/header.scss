@@ -16,17 +16,11 @@ header {
       margin: 0 auto;
       .navbar-header {
         h1 {
-          margin: 0 !important;
-          padding: 10px 0 0 0 !important;
+          padding: 10px 0px 0px 10px !important;
           a {
-            width: 200px;
             height: 40px !important;
             margin: 0;
-            background: image-url("logo.png") no-repeat 0 0;
-            background-size: contain;
             display: block;
-            white-space: nowrap;
-            text-indent: 99999px;
           }
         }
       }

@@ -1,0 +1,10 @@
+<div class="box">
+  <h2 class="box-title">ポートフォリオ</h2>
+  <div class="box-inner">
+        ポートフォリオ名：<%= @portfolio.name %><br>
+        作成者：<%= User.find_by(id: @portfolio.user_id).account_name %><br>
+        金融機関名：<%= Security.find_by(id: @portfolio.security_id).name %><br>
+        投資目的・方針：<%= @portfolio.purpose %>
+    </div>
+  </div>
+</div>

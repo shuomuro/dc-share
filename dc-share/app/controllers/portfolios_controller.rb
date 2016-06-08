@@ -1,5 +1,7 @@
 class PortfoliosController < ApplicationController
   before_action :logged_in_user
+  before_action :set_portfolio, only: [:show]
+ 
 
   def new
     @portfolio = Portfolio.new
@@ -18,20 +20,22 @@ class PortfoliosController < ApplicationController
   
   def create
     @portfolio = Portfolio.new(portfolio_params)
-    @portfolio.unique_constituent = portfolio_params[:constituents_attributes]['0'][:product_id] ###product_idを降順でソートして連結させた文字列の作成（未実装）
+    @portfolio.unique_constituent = portfolio_params[:constituents_attributes]['0'][:product_id] ###product_idを降順でソートして連結させた文字列の作成（未実装）、セパレーターも要決定
 
 
     if @portfolio.save
-      redirect_to root_path, notice: "ポートフォリオの作成が完了しました"
+      redirect_to @portfolio, notice: "ポートフォリオの作成が完了しました"
     else
       render 'new'
     end
+  end
 
-
+  def show
     
   end
 
 
+#  ネスト前に使用
 #  def portfolio_params
 #    params.require(:portfolio).permit(:name, :user_id, :security_id, :purpose)
 #  end
@@ -50,5 +54,8 @@ class PortfoliosController < ApplicationController
     )
   end
 
+  def set_portfolio
+    @portfolio = Portfolio.find(params[:id])
+  end
 
 end
