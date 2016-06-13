@@ -3,6 +3,10 @@ class PortfoliosController < ApplicationController
   before_action :set_portfolio, only: [:show]
  
 
+  def index
+    
+  end
+
   def new
     @portfolio = Portfolio.new
   end
@@ -15,16 +19,34 @@ class PortfoliosController < ApplicationController
 
     @lineup = @security.lineups #証券会社のラインナップのインスタンス
 
+    @line = []
+    @lineup.each do |l|
+     @line.push(l.product_id)
+    end
   end
   
   
   def create
     @portfolio = Portfolio.new(portfolio_params)
-    @portfolio.unique_constituent = portfolio_params[:constituents_attributes]['0'][:product_id] ###product_idを降順でソートして連結させた文字列の作成（未実装）、セパレーターも要決定
 
-
-    if @portfolio.save
-      redirect_to @portfolio, notice: "ポートフォリオの作成が完了しました"
+    if @portfolio.save #DBに保存
+      #product_idを降順でソートして連結させた文字列の作成、セパレーター":"
+      #先にsaveしておかないとwhere句の"@portfolio.id"が発行されていないため先に実行が必要
+      Constituent.where(portfolio_id: @portfolio.id).order("product_id ASC").each do |c|
+        if @portfolio.unique_constituent.nil? #nilへの代入が不可のため
+          @portfolio.unique_constituent = c.product_id.to_s #to_sは数値型を文字列型へ変換
+        else
+          @portfolio.unique_constituent += ":"
+          @portfolio.unique_constituent += c.product_id.to_s
+        end
+      end
+      #ここまでで生成したproduct_idの連結文字列をDBに保存
+      #念のためここでもfalseの場合はnewへ
+      if @portfolio.save
+        redirect_to @portfolio, notice: "ポートフォリオの作成が完了しました"
+      else
+        render 'new'
+      end
     else
       render 'new'
     end
@@ -49,7 +71,8 @@ class PortfoliosController < ApplicationController
       constituents_attributes: [
         :id,
         :percent,
-        :product_id
+        :product_id,
+        :_destroy #nest用で追加
       ]
     )
   end

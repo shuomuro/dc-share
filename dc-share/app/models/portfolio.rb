@@ -15,6 +15,7 @@ class Portfolio < ActiveRecord::Base
   has_many :users, through: :likes
 
 #モデルの階層関連付け
-  accepts_nested_attributes_for :constituents
+#ポートフォリオ作成フォームで商品追加・削除可能にするためallow_destroy: trueを追加
+  accepts_nested_attributes_for :constituents, allow_destroy: true
 
 end

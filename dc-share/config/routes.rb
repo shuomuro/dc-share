@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   post   'login' , to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'
 
+  get    'products/ranking',to: 'products#ranking'
+
   post   'constituent', to: 'portfolios#constituent'
 
 #  post   'portfolio'  , to: 'portfolios#create'

@@ -2,7 +2,7 @@
   <h2 class="box-title">ポートフォリオ作成（２）商品と投資割合の選択</h2>
   <div class="box-inner">
     選択中の金融機関：<%= @security.name %><br><br>
-    <%= form_for (@portfolio) do |f| %>
+    <%= nested_form_for (@portfolio) do |f| %>
       <%= f.hidden_field :user_id, :value => current_user.id %>
       <%= f.hidden_field :security_id, :value => @security.id %>
       <div class="form-group">
@@ -10,15 +10,19 @@
       </div>
 
 <%# 階層化で追加 %>
-
       <div class="field">
         <%= f.hidden_field :id %>
         <%= f.fields_for :constituents do |c| %>
           <%= render partial: "portfolios/constituent_form", locals: {c: c } %>
         <% end %>
       </div>
-
 <%# 階層化で追加　終わり %>
+
+<%# 複数商品を選択するための項目追加 %>
+
+      <div class="form_add">
+        <%= f.link_to_add "商品を追加", :constituents %>
+      </div>
 
 <%# 商品の複数選択の処理が未実装 %>
 

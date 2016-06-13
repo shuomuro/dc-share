@@ -1,0 +1,24 @@
+<div class="box">
+  <h2 class="box-title">組み込まれてる事が多い商品ランキング</h2>
+  <div class="box-inner">
+    <% Constituent.group(:product_id).order('count_all desc').limit(10).count.each.with_index(1) do |ranking, index| %>
+
+    <div class="ranking_products">
+      <div class="ranking_number ranking-<%= index %>">
+        <%= index %>位
+      </div>
+      <div class="product_id">
+        <% if ranking[0].nil? %>
+          ゴミデータ
+        <% else %>
+          <%= Product.find_by(id: ranking[0]).name %>
+        <% end %>
+      </div>
+    </div>
+    <div class="product_number">
+      組み込まれているポートフォリオ数：<%= ranking[1] %><br><br>
+    </div>
+
+    <% end %>
+  </div>
+</div>

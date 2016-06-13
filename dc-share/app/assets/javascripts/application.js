@@ -14,4 +14,8 @@
 //= require bootstrap-sprockets
 //= require jquery_ujs
 //= require turbolinks
+
+//Add by me for portfolio#constituent
+//= require jquery_nested_form
+
 //= require_tree .

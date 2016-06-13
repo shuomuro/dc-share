@@ -1,10 +1,50 @@
 <div class="box">
   <h2 class="box-title">ポートフォリオ</h2>
   <div class="box-inner">
-        ポートフォリオ名：<%= @portfolio.name %><br>
-        作成者：<%= User.find_by(id: @portfolio.user_id).account_name %><br>
-        金融機関名：<%= Security.find_by(id: @portfolio.security_id).name %><br>
-        投資目的・方針：<%= @portfolio.purpose %>
+    <table>
+      <tr>
+        <th>
+          ポートフォリオ名：
+        </th>
+        <td>
+          <%= @portfolio.name %>
+        </td>
+      </tr>
+      <tr>
+        <th>
+          作成者：
+        </th>
+        <td>
+          <%= User.find_by(id: @portfolio.user_id).account_name %>
+        </td>
+      </tr>
+      <tr>
+        <th>
+          金融機関名：
+        </th>
+        <td>
+          <%= Security.find_by(id: @portfolio.security_id).name %>
+        </td>
+      </tr>
+      <tr>
+        <th>
+          投資目的・方針：
+        </th>
+        <td>
+          <%= @portfolio.purpose %>
+        </td>
+      </tr>      
+      <tr>
+        <th>
+          商品：
+        </th>
+        <td>
+          <% @portfolio.constituents.each do |c| %>
+            <%= Product.find_by(id: c.product_id).name %>（<%= c.percent %>％）<br>
+          <% end %>
+        </td>
+      </tr>      
+    </table>
     </div>
   </div>
 </div>

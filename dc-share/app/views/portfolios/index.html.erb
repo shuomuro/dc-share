@@ -1,0 +1,8 @@
+<div class="box">
+  <h2 class="box-title">ポートフォリオ一覧（新着20）</h2>
+  <div class="box-inner">
+    <% Portfolio.order("updated_at DESC").limit(20).each do |p| %>
+      <%= link_to p.name, portfolio_path(p) %><br>
+    <% end %>
+  </div>
+</div>
