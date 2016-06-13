@@ -1,0 +1,7 @@
+    <div class="like-unlike">
+    <% if current_user.like?(portfolio) %>
+      <%= render 'portfolios/unlike' %>
+    <% else %>
+      <%= render 'portfolios/like' %>
+    <% end %>
+    </div>

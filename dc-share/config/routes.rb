@@ -8,6 +8,9 @@ Rails.application.routes.draw do
   get    'login' , to: 'sessions#new'
   post   'login' , to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'
+  
+  post   'likes'  , to: 'likes#create'
+  delete 'likes'  , to: 'likes#destroy'
 
   get    'products/ranking',to: 'products#ranking'
 
@@ -20,6 +23,7 @@ Rails.application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
   resources :portfolios
   resources :securities
+  resources :likes, only: [:create, :destroy]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

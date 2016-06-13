@@ -1,0 +1,4 @@
+<%= link_to "Like" , likes_path(portfolio_id: @portfolio.id) ,
+    :class => "like_form btn-have btn btn-warning btn-sm",
+    :remote => true,
+    :method => :post %>

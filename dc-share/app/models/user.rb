@@ -30,7 +30,11 @@ class User < ActiveRecord::Base
   end
 
   def like?(portfolio)
-    likes.include?(portfolio) #自信なし
+    if likes.find_by(portfolio_id: portfolio.id).nil?
+      return false
+    else
+      return true
+    end
   end
 
 end
