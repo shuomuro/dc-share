@@ -1,0 +1,26 @@
+<div class="box">
+  <h2 class="box-title">ポートフォリオ人気ランキング</h2>
+  <div class="box-inner">
+    <% Like.group(:portfolio_id).order('count_all desc').limit(10).count.each.with_index(1) do |ranking, index| %>
+
+    <div class="ranking_portfolios">
+      <div class="ranking_number ranking-<%= index %>">
+        <%= index %>位
+      </div>
+      <div class="portfolio_id">
+        <% if ranking[0].nil? %>
+          ゴミデータ
+        <% else %>
+          <%= link_to Portfolio.find_by(id: ranking[0]).name, portfolio_path(ranking[0]) %><br>
+          <%= Portfolio.find_by(id: ranking[0]).security_id %><br>
+          <%= Security.find_by(id: Portfolio.find_by(id: ranking[0]).security_id).name %>
+        <% end %>
+      </div>
+    </div>
+    <div class="product_number">
+      Like数：<%= ranking[1] %><br><br>
+    </div>
+
+    <% end %>
+  </div>
+</div>

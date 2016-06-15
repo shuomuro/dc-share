@@ -56,6 +56,10 @@ class PortfoliosController < ApplicationController
     
   end
 
+  def ranking
+    
+  end
+
 
 #  ネスト前に使用
 #  def portfolio_params

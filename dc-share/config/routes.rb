@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   get    'products/ranking',to: 'products#ranking'
 
   post   'constituent', to: 'portfolios#constituent'
+  get    'portfolios/ranking' , to: 'portfolios#ranking'
 
 #  post   'portfolio'  , to: 'portfolios#create'
 #  get    'portfolio'  , to: 'portfolios#new'
